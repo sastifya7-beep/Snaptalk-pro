@@ -3,1013 +3,2793 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
 <title>Snaptalk Pro</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#08080c;color:#fff}
-.hidden{display:none!important}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif
+}
+
+body{
+  background:#08080c;
+  color:#fff
+}
+
+.hidden{
+  display:none!important
+}
 
 button{
- border:0;border-radius:10px;padding:11px 15px;
- background:#8b52ff;color:#fff;font-weight:bold
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  background:#8b52ff;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer
 }
+
 input{
- width:100%;padding:13px;margin:7px 0;
- background:#101015;border:1px solid #333;
- color:#fff;border-radius:10px;outline:none
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  background:#101015;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:10px;
+  outline:none
 }
+
+/* LOGIN */
 
 #login{
- min-height:100vh;display:flex;align-items:center;
- justify-content:center;padding:20px
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px
 }
+
 .loginBox{
- width:100%;max-width:370px;background:#1c1c24;
- padding:28px;border-radius:22px;text-align:center
+  width:100%;
+  max-width:370px;
+  background:#1c1c24;
+  padding:28px;
+  border-radius:22px;
+  text-align:center
 }
-.logo{font-size:27px;font-weight:bold;color:#965cff}
-.btn{width:100%;margin-top:8px}
+
+.logo{
+  font-size:27px;
+  font-weight:bold;
+  color:#965cff
+}
+
+.btn{
+  width:100%;
+  margin-top:8px
+}
+
+/* APP */
 
 .app{
- max-width:480px;margin:auto;min-height:100vh;
- background:#111116;padding-bottom:75px
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  background:#111116;
+  padding-bottom:75px
 }
 
 header{
- height:60px;padding:0 16px;display:flex;
- align-items:center;justify-content:space-between;
- border-bottom:1px solid #29292f;
- position:sticky;top:0;background:#111116;z-index:20
+  height:60px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #29292f;
+  position:sticky;
+  top:0;
+  background:#111116;
+  z-index:20
 }
 
-.page{display:none;padding:15px}
-.page.active{display:block}
+.page{
+  display:none;
+  padding:15px
+}
+
+.page.active{
+  display:block
+}
+
+/* HOME */
 
 .storybar{
- overflow-x:auto;white-space:nowrap;padding:10px 0
+  overflow-x:auto;
+  white-space:nowrap;
+  padding:10px 0
 }
+
 .story{
- display:inline-flex;flex-direction:column;
- align-items:center;margin-right:14px;font-size:11px
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  margin-right:14px;
+  font-size:11px
 }
+
 .story img{
- width:58px;height:58px;border-radius:50%;
- object-fit:cover;border:3px solid #9255ff
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #9255ff
 }
 
-.post,.card{
- background:#1b1b22;border:1px solid #29292f;
- border-radius:14px;margin:12px 0;padding:14px
+.post,
+.card{
+  background:#1b1b22;
+  border:1px solid #29292f;
+  border-radius:14px;
+  margin:12px 0;
+  padding:14px
 }
-.postHead,.caller{
- display:flex;align-items:center;gap:10px
+
+.postHead,
+.caller{
+  display:flex;
+  align-items:center;
+  gap:10px
 }
-.smallPic,.caller img{
- width:45px;height:45px;border-radius:50%;
- object-fit:cover
+
+.smallPic,
+.caller img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover
 }
+
 .postimg{
- width:100%;height:270px;object-fit:cover;
- border-radius:12px;margin:10px 0
+  width:100%;
+  height:270px;
+  object-fit:cover;
+  border-radius:12px;
+  margin:10px 0
 }
-.actions{display:flex;gap:25px;font-size:24px}
-.actions span{cursor:pointer}
 
-.reelsPage{padding:7px!important;background:#050507}
+.actions{
+  display:flex;
+  gap:25px;
+  font-size:24px
+}
+
+.actions span{
+  cursor:pointer
+}
+
+/* REELS */
+
+.reelsPage{
+  padding:0!important;
+  background:#000;
+  height:calc(100vh - 60px);
+  overflow-y:auto;
+
+  scroll-snap-type:y mandatory;
+  overscroll-behavior-y:contain
+}
+
 .reel{
- height:calc(100vh - 85px);
- min-height:500px;max-height:760px;
- position:relative;overflow:hidden;
- border-radius:15px;margin-bottom:12px;background:#000
+  height:calc(100vh - 75px);
+  min-height:500px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:#000;
+
+  scroll-snap-align:start;
+  scroll-snap-stop:always
 }
+
 .reel video{
- width:100%;height:100%;object-fit:cover;
- display:block;background:#000
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  background:#000
 }
+
 .reelInfo{
- position:absolute;left:15px;right:15px;bottom:18px;
- z-index:3;text-shadow:0 2px 8px #000
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:20px;
+
+  z-index:3;
+
+  text-shadow:0 2px 8px #000
 }
-.reelUser{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+
+.reelUser{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:8px
+}
+
 .reelUser img{
- width:42px;height:42px;border-radius:50%;
- object-fit:cover;border:2px solid white
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid white
 }
-.reelStats{font-size:13px;color:#ddd}
+
+.reelStats{
+  font-size:13px;
+  color:#ddd;
+  margin-top:5px
+}
+
 .sound{
- position:absolute;right:12px;top:12px;
- background:#0009;border-radius:20px;padding:8px;
- z-index:5
+  position:absolute;
+  right:12px;
+  top:12px;
+
+  background:#0009;
+  border-radius:20px;
+  padding:8px;
+
+  z-index:5;
+
+  cursor:pointer
 }
+
+/* CREATE */
 
 .create{
- display:grid;grid-template-columns:1fr 1fr;gap:10px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
 }
-.create button{height:70px;background:#22222a}
 
-.profile{text-align:center}
+.create button{
+  height:70px;
+  background:#22222a
+}
+
+/* PROFILE */
+
+.profile{
+  text-align:center
+}
+
 .avatar{
- width:100px;height:100px;border-radius:50%;
- object-fit:cover;border:3px solid #9255ff
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #9255ff
 }
+
 .stats{
- display:flex;justify-content:space-around;
- text-align:center;margin:22px 0
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+  margin:22px 0
 }
-.stats b{display:block;font-size:20px}
+
+.stats b{
+  display:block;
+  font-size:20px
+}
+
+/* CALLER */
 
 .caller{
- padding:12px
+  padding:12px
 }
-.caller img{width:60px;height:60px}
-.callerInfo{flex:1}
-.callBtn{background:#24b15c}
+
+.caller img{
+  width:60px;
+  height:60px
+}
+
+.callerInfo{
+  flex:1
+}
+
+.callBtn{
+  background:#24b15c
+}
+
+/* NAV */
 
 nav{
- position:fixed;bottom:0;left:50%;
- transform:translateX(-50%);
- width:min(480px,100%);height:65px;
- background:#17171d;display:flex;
- justify-content:space-around;align-items:center;
- border-top:1px solid #29292f;z-index:50
-}
-nav button{background:none;font-size:22px;color:#aaa}
-.plus{
- background:#8b52ff!important;color:#fff!important;
- width:48px;height:48px;border-radius:50%!important
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:min(480px,100%);
+  height:65px;
+
+  background:#17171d;
+
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+
+  border-top:1px solid #29292f;
+
+  z-index:50
 }
 
-#game{
- position:fixed;inset:0;background:#050507;z-index:100;
- display:flex;flex-direction:column;
- align-items:center;justify-content:center
+nav button{
+  background:none;
+  font-size:22px;
+  color:#aaa
 }
+
+.plus{
+  background:#8b52ff!important;
+  color:#fff!important;
+
+  width:48px;
+  height:48px;
+
+  border-radius:50%!important
+}
+
+/* SNAKE */
+
+#game{
+  position:fixed;
+  inset:0;
+
+  background:#050507;
+
+  z-index:100;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center
+}
+
 canvas{
- background:#101827;border:2px solid #8b52ff;
- border-radius:10px;touch-action:none
+  background:#101827;
+  border:2px solid #8b52ff;
+  border-radius:10px;
+  touch-action:none
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
+
 <div id="login">
- <div class="loginBox">
 
-  <div class="logo">Snaptalk 🔥</div>
-  <p style="color:#aaa;margin:8px">
-   Strong & Easy Version
-  </p>
+  <div class="loginBox">
 
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
+    <div class="logo">
+      Snaptalk 🔥
+    </div>
 
-  <button class="btn" onclick="login()">LOGIN</button>
+    <p style="color:#aaa;margin:8px">
+      Strong & Easy Version
+    </p>
 
-  <button class="btn"
-   style="background:#1877f2"
-   onclick="facebookLogin()">
-   Facebook Login
-  </button>
+    <input
+      id="email"
+      type="email"
+      placeholder="Email"
+    >
 
- </div>
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button
+      type="button"
+      class="btn"
+      id="loginBtn">
+      LOGIN
+    </button>
+
+    <button
+      type="button"
+      class="btn"
+      style="background:#1877f2"
+      id="facebookBtn">
+      Facebook Login
+    </button>
+
+  </div>
+
 </div>
 
 
-<!-- APP -->
+<!-- ================= APP ================= -->
+
 <div id="app" class="app hidden">
 
 <header>
- <div class="logo">Snaptalk</div>
- <button style="background:none;font-size:20px"
-  onclick="showPage('search')">🔎</button>
+
+  <div class="logo">
+    Snaptalk
+  </div>
+
+  <button
+    type="button"
+    style="background:none;font-size:20px"
+    id="searchBtn">
+    🔎
+  </button>
+
 </header>
 
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
+
 <section id="home" class="page active">
 
- <div class="storybar">
+  <div class="storybar">
 
-  <div class="story">
-   <img src="https://i.pravatar.cc/150?img=12">
-   <span>Your Story</span>
+    <div class="story">
+      <img src="https://i.pravatar.cc/150?img=12">
+      <span>Your Story</span>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/150?img=32">
+      <span>Alex</span>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/150?img=14">
+      <span>Rahul</span>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/150?img=47">
+      <span>Priya</span>
+    </div>
+
   </div>
 
-  <div class="story">
-   <img src="https://i.pravatar.cc/150?img=32">
-   <span>Alex</span>
+
+  <div class="post">
+
+    <div class="postHead">
+
+      <img
+        class="smallPic"
+        src="https://i.pravatar.cc/150?img=12">
+
+      <b>Aryan Official</b>
+
+    </div>
+
+    <img
+      class="postimg"
+      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=700&q=80">
+
+    <div class="actions">
+
+      <span class="likeBtn">♡</span>
+
+      <span class="commentBtn">
+        💬
+      </span>
+
+      <span class="shareBtn">
+        ↗
+      </span>
+
+    </div>
+
+    <br>
+
+    <b>12.4K likes</b>
+
+    <p style="margin-top:7px">
+      Welcome to Snaptalk 🚀
+    </p>
+
   </div>
 
-  <div class="story">
-   <img src="https://i.pravatar.cc/150?img=14">
-   <span>Rahul</span>
+
+  <div class="post">
+
+    <div class="postHead">
+
+      <img
+        class="smallPic"
+        src="https://i.pravatar.cc/150?img=33">
+
+      <b>Rohit</b>
+
+    </div>
+
+    <img
+      class="postimg"
+      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80">
+
+    <div class="actions">
+
+      <span class="likeBtn">♡</span>
+
+      <span>💬</span>
+
+      <span>↗</span>
+
+    </div>
+
+    <br>
+
+    <b>21.8K likes 🔴 LIVE</b>
+
   </div>
 
-  <div class="story">
-   <img src="https://i.pravatar.cc/150?img=47">
-   <span>Priya</span>
+
+  <div class="post">
+
+    <div class="postHead">
+
+      <img
+        class="smallPic"
+        src="https://i.pravatar.cc/150?img=11">
+
+      <b>Phonk Zone</b>
+
+    </div>
+
+    <img
+      class="postimg"
+      src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=700&q=80">
+
+    <div class="actions">
+
+      <span class="likeBtn">♡</span>
+
+      <span>💬</span>
+
+      <span>↗</span>
+
+    </div>
+
+    <br>
+
+    <b>18.6K likes</b>
+
   </div>
-
- </div>
-
-
- <div class="post">
-
-  <div class="postHead">
-   <img class="smallPic"
-    src="https://i.pravatar.cc/150?img=12">
-   <b>Aryan Official</b>
-  </div>
-
-  <img class="postimg"
-   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=700&q=80">
-
-  <div class="actions">
-   <span onclick="like(this)">♡</span>
-   <span onclick="msg('Comments')">💬</span>
-   <span onclick="msg('Shared')">↗</span>
-  </div>
-
-  <br>
-  <b>12.4K likes</b>
-  <p style="margin-top:7px">Welcome to Snaptalk 🚀</p>
-
- </div>
-
-
- <div class="post">
-
-  <div class="postHead">
-   <img class="smallPic"
-    src="https://i.pravatar.cc/150?img=33">
-   <b>Rohit</b>
-  </div>
-
-  <img class="postimg"
-   src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80">
-
-  <div class="actions">
-   <span onclick="like(this)">♡</span>
-   <span>💬</span>
-   <span>↗</span>
-  </div>
-
-  <br>
-  <b>21.8K likes 🔴 LIVE</b>
-
- </div>
-
-
- <div class="post">
-
-  <div class="postHead">
-   <img class="smallPic"
-    src="https://i.pravatar.cc/150?img=11">
-   <b>Phonk Zone</b>
-  </div>
-
-  <img class="postimg"
-   src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=700&q=80">
-
-  <div class="actions">
-   <span onclick="like(this)">♡</span>
-   <span>💬</span>
-   <span>↗</span>
-  </div>
-
-  <br>
-  <b>18.6K likes</b>
-
- </div>
 
 </section>
 
 
-<!-- REELS -->
+<!-- ================= REELS ================= -->
+
 <section id="reels" class="page reelsPage">
 
-<!-- 1 -->
+
+<!-- REEL 1 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=12">
-   <b>@aryan_07</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+  </video>
+
+  <div class="sound">
+    🔇
   </div>
-  <p>Aura Phonk 🔥</p>
-  <div class="reelStats">❤️ 24.6K · 💬 1.8K · ↗ 4.2K</div>
- </div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=12">
+
+      <b>@aryan_07</b>
+
+    </div>
+
+    <p>Aura Phonk 🔥</p>
+
+    <div class="reelStats">
+      ❤️ 24.6K · 💬 1.8K · ↗ 4.2K
+    </div>
+
+  </div>
+
 </div>
 
-<!-- 2 -->
+
+<!-- REEL 2 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=33">
-   <b>@rohit_phonk</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/mov_bbb.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=33">
+
+      <b>@rohit_phonk</b>
+
+    </div>
+
+    <p>Dark Phonk 🖤</p>
+
+    <div class="reelStats">
+      ❤️ 18.9K · 💬 920 · ↗ 2.7K
+    </div>
+
   </div>
-  <p>Dark Phonk 🖤</p>
-  <div class="reelStats">❤️ 18.9K · 💬 920 · ↗ 2.7K</div>
- </div>
+
 </div>
 
-<!-- 3 -->
+
+<!-- REEL 3 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=11">
-   <b>@phonk_world</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=11">
+
+      <b>@phonk_world</b>
+
+    </div>
+
+    <p>Aura Edit ⚡</p>
+
+    <div class="reelStats">
+      ❤️ 32.1K · 💬 2.2K · ↗ 5.4K
+    </div>
+
   </div>
-  <p>Aura Edit ⚡</p>
-  <div class="reelStats">❤️ 32.1K · 💬 2.2K · ↗ 5.4K</div>
- </div>
+
 </div>
 
-<!-- 4 -->
+
+<!-- REEL 4 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/movie.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=45">
-   <b>@aura_edit</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/movie.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=45">
+
+      <b>@aura_edit</b>
+
+    </div>
+
+    <p>Speed Edit 🔥</p>
+
+    <div class="reelStats">
+      ❤️ 14.7K · 💬 630 · ↗ 1.9K
+    </div>
+
   </div>
-  <p>Speed Edit 🔥</p>
-  <div class="reelStats">❤️ 14.7K · 💬 630 · ↗ 1.9K</div>
- </div>
+
 </div>
 
-<!-- 5 -->
+
+<!-- REEL 5 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=21">
-   <b>@dark_aura</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=21">
+
+      <b>@dark_aura</b>
+
+    </div>
+
+    <p>Dark Aura 🖤</p>
+
+    <div class="reelStats">
+      ❤️ 29.2K · 💬 1.4K · ↗ 3.8K
+    </div>
+
   </div>
-  <p>Dark Aura 🖤</p>
-  <div class="reelStats">❤️ 29.2K · 💬 1.4K · ↗ 3.8K</div>
- </div>
+
 </div>
 
-<!-- 6 -->
+
+<!-- REEL 6 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=55">
-   <b>@phonk_master</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/mov_bbb.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=55">
+
+      <b>@phonk_master</b>
+
+    </div>
+
+    <p>Phonk Motion ⚡</p>
+
+    <div class="reelStats">
+      ❤️ 41.3K · 💬 3.1K · ↗ 7.2K
+    </div>
+
   </div>
-  <p>Phonk Motion ⚡</p>
-  <div class="reelStats">❤️ 41.3K · 💬 3.1K · ↗ 7.2K</div>
- </div>
+
 </div>
 
-<!-- 7 -->
+
+<!-- REEL 7 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=24">
-   <b>@edit_zone</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=24">
+
+      <b>@edit_zone</b>
+
+    </div>
+
+    <p>Slow Motion 🔥</p>
+
+    <div class="reelStats">
+      ❤️ 16.8K · 💬 740 · ↗ 2.1K
+    </div>
+
   </div>
-  <p>Slow Motion 🔥</p>
-  <div class="reelStats">❤️ 16.8K · 💬 740 · ↗ 2.1K</div>
- </div>
+
 </div>
 
-<!-- 8 -->
+
+<!-- REEL 8 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/movie.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=31">
-   <b>@night_edit</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/movie.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=31">
+
+      <b>@night_edit</b>
+
+    </div>
+
+    <p>Night Vibe 🌙</p>
+
+    <div class="reelStats">
+      ❤️ 22.4K · 💬 1K · ↗ 3.4K
+    </div>
+
   </div>
-  <p>Night Vibe 🌙</p>
-  <div class="reelStats">❤️ 22.4K · 💬 1K · ↗ 3.4K</div>
- </div>
+
 </div>
 
-<!-- 9 -->
+
+<!-- REEL 9 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=36">
-   <b>@viral_fx</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=36">
+
+      <b>@viral_fx</b>
+
+    </div>
+
+    <p>Viral FX ⚡</p>
+
+    <div class="reelStats">
+      ❤️ 38.5K · 💬 2.8K · ↗ 6.2K
+    </div>
+
   </div>
-  <p>Viral FX ⚡</p>
-  <div class="reelStats">❤️ 38.5K · 💬 2.8K · ↗ 6.2K</div>
- </div>
+
 </div>
 
-<!-- 10 -->
+
+<!-- REEL 10 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=42">
-   <b>@aesthetic</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/mov_bbb.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=42">
+
+      <b>@aesthetic</b>
+
+    </div>
+
+    <p>Aesthetic Edit ✨</p>
+
+    <div class="reelStats">
+      ❤️ 19.7K · 💬 850 · ↗ 2.9K
+    </div>
+
   </div>
-  <p>Aesthetic Edit ✨</p>
-  <div class="reelStats">❤️ 19.7K · 💬 850 · ↗ 2.9K</div>
- </div>
+
 </div>
 
-<!-- 11 -->
+
+<!-- REEL 11 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=48">
-   <b>@darkking</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=48">
+
+      <b>@darkking</b>
+
+    </div>
+
+    <p>Dark King 👑</p>
+
+    <div class="reelStats">
+      ❤️ 27.3K · 💬 1.3K · ↗ 4.1K
+    </div>
+
   </div>
-  <p>Dark King 👑</p>
-  <div class="reelStats">❤️ 27.3K · 💬 1.3K · ↗ 4.1K</div>
- </div>
+
 </div>
 
-<!-- 12 -->
+
+<!-- REEL 12 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/movie.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=52">
-   <b>@speedx</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/movie.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=52">
+
+      <b>@speedx</b>
+
+    </div>
+
+    <p>Speed Phonk 🔥</p>
+
+    <div class="reelStats">
+      ❤️ 33.7K · 💬 2K · ↗ 5.8K
+    </div>
+
   </div>
-  <p>Speed Phonk 🔥</p>
-  <div class="reelStats">❤️ 33.7K · 💬 2K · ↗ 5.8K</div>
- </div>
+
 </div>
 
-<!-- 13 -->
+
+<!-- REEL 13 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=57">
-   <b>@phonk_lab</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=57">
+
+      <b>@phonk_lab</b>
+
+    </div>
+
+    <p>Phonk Lab 🎧</p>
+
+    <div class="reelStats">
+      ❤️ 45.1K · 💬 3.6K · ↗ 8.2K
+    </div>
+
   </div>
-  <p>Phonk Lab 🎧</p>
-  <div class="reelStats">❤️ 45.1K · 💬 3.6K · ↗ 8.2K</div>
- </div>
+
 </div>
 
-<!-- 14 -->
+
+<!-- REEL 14 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=61">
-   <b>@editking</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/mov_bbb.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=61">
+
+      <b>@editking</b>
+
+    </div>
+
+    <p>Beat Edit 🎵</p>
+
+    <div class="reelStats">
+      ❤️ 17.2K · 💬 710 · ↗ 2.5K
+    </div>
+
   </div>
-  <p>Beat Edit 🎵</p>
-  <div class="reelStats">❤️ 17.2K · 💬 710 · ↗ 2.5K</div>
- </div>
+
 </div>
 
-<!-- 15 -->
+
+<!-- REEL 15 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=68">
-   <b>@reelking</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=68">
+
+      <b>@reelking</b>
+
+    </div>
+
+    <p>Reel King 👑</p>
+
+    <div class="reelStats">
+      ❤️ 52K · 💬 4K · ↗ 9K
+    </div>
+
   </div>
-  <p>Reel King 👑</p>
-  <div class="reelStats">❤️ 52K · 💬 4K · ↗ 9K</div>
- </div>
+
 </div>
 
-<!-- 16 -->
+
+<!-- REEL 16 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/movie.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=70">
-   <b>@viral_reels</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/movie.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=70">
+
+      <b>@viral_reels</b>
+
+    </div>
+
+    <p>Viral Reel 🚀</p>
+
+    <div class="reelStats">
+      ❤️ 61K · 💬 5K · ↗ 12K
+    </div>
+
   </div>
-  <p>Viral Reel 🚀</p>
-  <div class="reelStats">❤️ 61K · 💬 5K · ↗ 12K</div>
- </div>
+
 </div>
 
-<!-- 17 -->
+
+<!-- REEL 17 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=72">
-   <b>@aura_pro</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=72">
+
+      <b>@aura_pro</b>
+
+    </div>
+
+    <p>Aura Pro ⚡</p>
+
+    <div class="reelStats">
+      ❤️ 35K · 💬 2.7K · ↗ 5.9K
+    </div>
+
   </div>
-  <p>Aura Pro ⚡</p>
-  <div class="reelStats">❤️ 35K · 💬 2.7K · ↗ 5.9K</div>
- </div>
+
 </div>
 
-<!-- 18 -->
+
+<!-- REEL 18 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=75">
-   <b>@black_edit</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/mov_bbb.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=75">
+
+      <b>@black_edit</b>
+
+    </div>
+
+    <p>Black Edit 🖤</p>
+
+    <div class="reelStats">
+      ❤️ 28K · 💬 1.9K · ↗ 4.3K
+    </div>
+
   </div>
-  <p>Black Edit 🖤</p>
-  <div class="reelStats">❤️ 28K · 💬 1.9K · ↗ 4.3K</div>
- </div>
+
 </div>
 
-<!-- 19 -->
+
+<!-- REEL 19 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=79">
-   <b>@phonk_star</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=79">
+
+      <b>@phonk_star</b>
+
+    </div>
+
+    <p>Phonk Star ⭐</p>
+
+    <div class="reelStats">
+      ❤️ 48K · 💬 3.8K · ↗ 7.4K
+    </div>
+
   </div>
-  <p>Phonk Star ⭐</p>
-  <div class="reelStats">❤️ 48K · 💬 3.8K · ↗ 7.4K</div>
- </div>
+
 </div>
 
-<!-- 20 -->
+
+<!-- REEL 20 -->
+
 <div class="reel">
- <video controls playsinline preload="metadata"
-  src="https://www.w3schools.com/html/movie.mp4"></video>
- <div class="sound">🔊</div>
- <div class="reelInfo">
-  <div class="reelUser">
-   <img src="https://i.pravatar.cc/150?img=81">
-   <b>@snaptalk_creator</b>
+
+  <video
+    playsinline
+    preload="metadata"
+    src="https://www.w3schools.com/html/movie.mp4">
+  </video>
+
+  <div class="sound">🔇</div>
+
+  <div class="reelInfo">
+
+    <div class="reelUser">
+
+      <img src="https://i.pravatar.cc/150?img=81">
+
+      <b>@snaptalk_creator</b>
+
+    </div>
+
+    <p>Final Reel 🔥</p>
+
+    <div class="reelStats">
+      ❤️ 72K · 💬 6K · ↗ 15K
+    </div>
+
   </div>
-  <p>Final Reel 🔥</p>
-  <div class="reelStats">❤️ 72K · 💬 6K · ↗ 15K</div>
- </div>
+
 </div>
 
 </section>
 
 
-<!-- CREATE -->
+<!-- ================= CREATE ================= -->
+
 <section id="create" class="page">
- <h2>Create</h2><br>
 
- <div class="create">
-
-  <button onclick="msg('Post Creator')">
-   📷 Post
-  </button>
-
-  <button onclick="msg('Story Creator')">
-   ⭕ Story
-  </button>
-
-  <button onclick="showPage('reels')">
-   🎬 Reel
-  </button>
-
-  <button onclick="showPage('caller')">
-   📞 Caller
-  </button>
-
-  <button onclick="showPage('live')">
-   🔴 Live
-  </button>
-
-  <button onclick="msg('Poll Creator')">
-   📊 Poll
-  </button>
-
- </div>
-</section>
-
-
-<!-- CHAT -->
-<section id="chat" class="page">
-
- <h2>Messages</h2>
-
- <div class="card">
-  👤 Alex — Hey 👋
- </div>
-
- <div class="card">
-  💬 Welcome to Snaptalk 🔥
- </div>
-
- <h3 style="margin-top:18px">
-  📞 Recent Calls
- </h3>
-
- <div class="card caller">
-
-  <img src="https://i.pravatar.cc/150?img=12">
-
-  <div class="callerInfo">
-   <b>Aryan</b>
-   <p style="color:#aaa">Online</p>
-  </div>
-
-  <button class="callBtn"
-   onclick="startGame('Aryan')">
-   📞
-  </button>
-
- </div>
-
-
- <div class="card caller">
-
-  <img src="https://i.pravatar.cc/150?img=33">
-
-  <div class="callerInfo">
-   <b>Rohit</b>
-   <p style="color:#aaa">Active now</p>
-  </div>
-
-  <button class="callBtn"
-   onclick="startGame('Rohit')">
-   📞
-  </button>
-
- </div>
-
-</section>
-
-
-<!-- LIVE -->
-<section id="live" class="page">
-
- <h2>🔴 Live</h2>
-
- <div class="card">
-  🔴 Aryan Official — 12.4K Likes
-  <br>Live Now
- </div>
-
- <div class="card">
-  🔴 Rohit — 21.8K Likes
-  <br>Live Now
- </div>
-
-</section>
-
-
-<!-- PROFILE -->
-<section id="profile" class="page">
-
- <div class="profile">
-
-  <img class="avatar"
-   src="https://i.pravatar.cc/300?img=12">
+  <h2>Create</h2>
 
   <br>
 
-  <h2>@aryan_07</h2>
+  <div class="create">
 
-  <p style="color:#aaa">
-   Creator • Snaptalk
+    <button id="postCreator">
+      📷 Post
+    </button>
+
+    <button id="storyCreator">
+      ⭕ Story
+    </button>
+
+    <button id="reelCreator">
+      🎬 Reel
+    </button>
+
+    <button id="callerCreator">
+      📞 Caller
+    </button>
+
+    <button id="liveCreator">
+      🔴 Live
+    </button>
+
+    <button id="pollCreator">
+      📊 Poll
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CHAT ================= -->
+
+<section id="chat" class="page">
+
+  <h2>Messages</h2>
+
+  <div class="card">
+    👤 Alex — Hey 👋
+  </div>
+
+  <div class="card">
+    💬 Welcome to Snaptalk 🔥
+  </div>
+
+  <h3 style="margin-top:18px">
+    📞 Recent Calls
+  </h3>
+
+
+  <div class="card caller">
+
+    <img src="https://i.pravatar.cc/150?img=12">
+
+    <div class="callerInfo">
+
+      <b>Aryan</b>
+
+      <p style="color:#aaa">
+        Online
+      </p>
+
+    </div>
+
+    <button
+      class="callBtn callAction"
+      data-name="Aryan">
+      📞
+    </button>
+
+  </div>
+
+
+  <div class="card caller">
+
+    <img src="https://i.pravatar.cc/150?img=33">
+
+    <div class="callerInfo">
+
+      <b>Rohit</b>
+
+      <p style="color:#aaa">
+        Active now
+      </p>
+
+    </div>
+
+    <button
+      class="callBtn callAction"
+      data-name="Rohit">
+      📞
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LIVE ================= -->
+
+<section id="live" class="page">
+
+  <h2>🔴 Live</h2>
+
+  <div class="card">
+    🔴 Aryan Official — 12.4K Likes
+    <br>
+    Live Now
+  </div>
+
+  <div class="card">
+    🔴 Rohit — 21.8K Likes
+    <br>
+    Live Now
+  </div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section id="profile" class="page">
+
+  <div class="profile">
+
+    <img
+      class="avatar"
+      src="https://i.pravatar.cc/300?img=12">
+
+    <br>
+
+    <h2>@aryan_07</h2>
+
+    <p style="color:#aaa">
+      Creator • Snaptalk
+    </p>
+
+
+    <div class="stats">
+
+      <div>
+        <b>126</b>
+        Posts
+      </div>
+
+      <div>
+        <b id="followers">
+          12.4K
+        </b>
+        Followers
+      </div>
+
+      <div>
+        <b id="following">
+          1,284
+        </b>
+        Following
+      </div>
+
+    </div>
+
+
+    <button
+      id="followBtn">
+      Follow
+    </button>
+
+    <br><br>
+
+    <button
+      id="logoutBtn"
+      style="background:#d33">
+      Logout
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section id="search" class="page">
+
+  <h2>Search</h2>
+
+  <br>
+
+  <input
+    id="searchBox"
+    placeholder="Search people">
+
+  <button
+    class="btn"
+    id="searchUserBtn">
+    Search
+  </button>
+
+  <div
+    id="result"
+    class="card">
+    🔎 Search Snaptalk
+  </div>
+
+</section>
+
+
+<!-- ================= CALLER ================= -->
+
+<section id="caller" class="page">
+
+  <h2>📞 Caller</h2>
+
+  <p style="color:#aaa;margin:10px 0">
+    Demo calls + Snake
   </p>
 
 
-  <div class="stats">
+  <div class="card caller">
 
-   <div>
-    <b>126</b>
-    Posts
-   </div>
+    <img src="https://i.pravatar.cc/150?img=12">
 
-   <div>
-    <b id="followers">12.4K</b>
-    Followers
-   </div>
+    <div class="callerInfo">
 
-   <div>
-    <b id="following">1,284</b>
-    Following
-   </div>
+      <b>Aryan</b>
+
+      <p style="color:#aaa">
+        Online
+      </p>
+
+    </div>
+
+    <button
+      class="callBtn callAction"
+      data-name="Aryan">
+      📞 Call
+    </button>
 
   </div>
 
 
-  <button
-   id="followBtn"
-   onclick="followUser()">
-   Follow
-  </button>
+  <div class="card caller">
 
-  <br><br>
+    <img src="https://i.pravatar.cc/150?img=33">
 
-  <button
-   onclick="logout()"
-   style="background:#d33">
-   Logout
-  </button>
+    <div class="callerInfo">
 
- </div>
+      <b>Rohit</b>
 
-</section>
+      <p style="color:#aaa">
+        Online
+      </p>
 
+    </div>
 
-<!-- SEARCH -->
-<section id="search" class="page">
+    <button
+      class="callBtn callAction"
+      data-name="Rohit">
+      📞 Call
+    </button>
 
- <h2>Search</h2>
- <br>
-
- <input id="searchBox"
-  placeholder="Search people">
-
- <button class="btn"
-  onclick="searchUser()">
-  Search
- </button>
-
- <div id="result" class="card">
-  🔎 Search Snaptalk
- </div>
-
-</section>
-
-
-<!-- CALLER -->
-<section id="caller" class="page">
-
- <h2>📞 Caller</h2>
-
- <p style="color:#aaa;margin:10px 0">
-  Demo calls + Snake
- </p>
-
-
- <div class="card caller">
-
-  <img src="https://i.pravatar.cc/150?img=12">
-
-  <div class="callerInfo">
-   <b>Aryan</b>
-   <p style="color:#aaa">Online</p>
   </div>
 
-  <button class="callBtn"
-   onclick="startGame('Aryan')">
-   📞 Call
-  </button>
-
- </div>
-
-
- <div class="card caller">
-
-  <img src="https://i.pravatar.cc/150?img=33">
-
-  <div class="callerInfo">
-   <b>Rohit</b>
-   <p style="color:#aaa">Online</p>
-  </div>
-
-  <button class="callBtn"
-   onclick="startGame('Rohit')">
-   📞 Call
-  </button>
-
- </div>
-
 </section>
 
 
-<!-- NAV -->
+<!-- ================= NAV ================= -->
+
 <nav>
 
- <button onclick="showPage('home')">
-  🏠
- </button>
+  <button
+    type="button"
+    id="homeNav">
+    🏠
+  </button>
 
- <button onclick="showPage('reels')">
-  ▶️
- </button>
+  <button
+    type="button"
+    id="reelsNav">
+    ▶️
+  </button>
 
- <button class="plus"
-  onclick="showPage('create')">
-  ＋
- </button>
+  <button
+    type="button"
+    class="plus"
+    id="createNav">
+    ＋
+  </button>
 
- <button onclick="showPage('chat')">
-  💬
- </button>
+  <button
+    type="button"
+    id="chatNav">
+    💬
+  </button>
 
- <button onclick="showPage('profile')">
-  👤
- </button>
+  <button
+    type="button"
+    id="profileNav">
+    👤
+  </button>
 
 </nav>
 
 </div>
 
 
-<!-- SNAKE -->
+<!-- ================= SNAKE ================= -->
+
 <div id="game" class="hidden">
 
- <h3 id="callName">
-  Demo Call
- </h3>
+  <h3 id="callName">
+    Demo Call
+  </h3>
 
- <p style="margin:10px">
-  🍎 Food:
-  <span id="foodCount">0</span>/20
-  &nbsp;|&nbsp;
-  Score:
-  <span id="score">0</span>
- </p>
+  <p style="margin:10px">
 
- <canvas id="canvas"
-  width="300"
-  height="300">
- </canvas>
+    🍎 Food:
+    <span id="foodCount">0</span>/20
 
- <p style="font-size:12px;color:#aaa;margin:10px">
-  Tap/click to change direction
- </p>
+    &nbsp;|&nbsp;
 
- <button
-  onclick="closeGame()"
-  style="background:#d33;width:180px">
-  End Call
- </button>
+    Score:
+    <span id="score">0</span>
+
+  </p>
+
+
+  <canvas
+    id="canvas"
+    width="300"
+    height="300">
+  </canvas>
+
+
+  <p style="font-size:12px;color:#aaa;margin:10px">
+    Tap/click to change direction
+  </p>
+
+
+  <button
+    id="endCallBtn"
+    style="background:#d33;width:180px">
+    End Call
+  </button>
 
 </div>
 
 
 <script>
 
-/* ================= BASIC ================= */
+/* =================================================
+   BASIC
+================================================= */
 
 function msg(text){
- alert(text);
+  alert(text);
 }
 
 
-/* ================= LOGIN ================= */
+/* =================================================
+   ELEMENTS
+================================================= */
+
+const loginPage =
+  document.getElementById("login");
+
+const appPage =
+  document.getElementById("app");
+
+const emailInput =
+  document.getElementById("email");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const facebookBtn =
+  document.getElementById("facebookBtn");
+
+
+/* =================================================
+   LOGIN
+================================================= */
+
+function openApp(){
+
+  loginPage.classList.add("hidden");
+
+  appPage.classList.remove("hidden");
+
+  showPage("home");
+
+}
+
 
 function login(){
 
- const email =
- document.getElementById("email").value.trim();
+  const email =
+    emailInput.value.trim();
 
- const password =
- document.getElementById("password").value.trim();
+  const password =
+    passwordInput.value.trim();
 
- if(!email){
-  alert("Email dalo");
-  return;
- }
 
- if(!password){
-  alert("Password dalo");
-  return;
- }
+  if(email === ""){
 
- localStorage.setItem(
-  "snaptalk_login","yes"
- );
+    alert("Email dalo");
 
- openApp();
+    emailInput.focus();
+
+    return;
+
+  }
+
+
+  if(password === ""){
+
+    alert("Password dalo");
+
+    passwordInput.focus();
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "snaptalk_login",
+    "yes"
+  );
+
+
+  openApp();
+
 }
 
 
 function facebookLogin(){
 
- localStorage.setItem(
-  "snaptalk_login","yes"
- );
+  localStorage.setItem(
+    "snaptalk_login",
+    "yes"
+  );
 
- openApp();
+  openApp();
+
 }
 
 
-function openApp(){
-
- document
- .getElementById("login")
- .classList.add("hidden");
-
- document
- .getElementById("app")
- .classList.remove("hidden");
-
- showPage("home");
-}
+loginBtn.addEventListener(
+  "click",
+  login
+);
 
 
-/* ================= PAGE ================= */
+facebookBtn.addEventListener(
+  "click",
+  facebookLogin
+);
+
+
+emailInput.addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Enter"){
+      login();
+    }
+
+  }
+);
+
+
+passwordInput.addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Enter"){
+      login();
+    }
+
+  }
+);
+
+
+/* =================================================
+   PAGE NAVIGATION
+================================================= */
 
 function showPage(id){
 
- document
- .querySelectorAll(".page")
- .forEach(function(page){
-  page.classList.remove("active");
- });
-
- const page =
- document.getElementById(id);
-
- if(page){
-  page.classList.add("active");
- }else{
   document
-  .getElementById("home")
-  .classList.add("active");
- }
+    .querySelectorAll(".page")
+    .forEach(function(page){
 
- window.scrollTo(0,0);
+      page.classList.remove("active");
 
-}
-
-
-/* ================= LIKE ================= */
-
-function like(button){
-
- button.innerText =
- button.innerText === "♡"
- ? "♥"
- : "♡";
-
-}
+    });
 
 
-/* ================= FOLLOW ================= */
+  const selected =
+    document.getElementById(id);
 
-let followingUser=false;
 
-function followUser(){
+  if(selected){
 
- followingUser=!followingUser;
+    selected.classList.add("active");
 
- const btn =
- document.getElementById("followBtn");
+  }else{
 
- const followers =
- document.getElementById("followers");
+    document
+      .getElementById("home")
+      .classList.add("active");
 
- if(followingUser){
+  }
 
-  btn.innerText="Following ✓";
-  followers.innerText="12.5K";
 
- }else{
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
 
-  btn.innerText="Follow";
-  followers.innerText="12.4K";
 
- }
+  if(id !== "reels"){
+
+    stopAllVideos();
+
+  }else{
+
+    setupReels();
+
+  }
 
 }
 
 
-/* ================= SEARCH ==
+/* =================================================
+   NAV BUTTONS
+================================================= */
+
+document
+  .getElementById("homeNav")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("home");
+    }
+  );
+
+
+document
+  .getElementById("reelsNav")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("reels");
+    }
+  );
+
+
+document
+  .getElementById("createNav")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("create");
+    }
+  );
+
+
+document
+  .getElementById("chatNav")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("chat");
+    }
+  );
+
+
+document
+  .getElementById("profileNav")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("profile");
+    }
+  );
+
+
+document
+  .getElementById("searchBtn")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("search");
+    }
+  );
+
+
+/* =================================================
+   HOME BUTTONS
+================================================= */
+
+document
+  .querySelectorAll(".likeBtn")
+  .forEach(function(btn){
+
+    btn.addEventListener(
+      "click",
+      function(){
+
+        btn.innerText =
+          btn.innerText === "♡"
+          ? "♥"
+          : "♡";
+
+      }
+    );
+
+  });
+
+
+document
+  .querySelectorAll(".commentBtn")
+  .forEach(function(btn){
+
+    btn.addEventListener(
+      "click",
+      function(){
+        msg("Comments");
+      }
+    );
+
+  });
+
+
+document
+  .querySelectorAll(".shareBtn")
+  .forEach(function(btn){
+
+    btn.addEventListener(
+      "click",
+      function(){
+        msg("Shared");
+      }
+    );
+
+  });
+
+
+/* =================================================
+   CREATE
+================================================= */
+
+document
+  .getElementById("postCreator")
+  .addEventListener(
+    "click",
+    function(){
+      msg("Post Creator");
+    }
+  );
+
+
+document
+  .getElementById("storyCreator")
+  .addEventListener(
+    "click",
+    function(){
+      msg("Story Creator");
+    }
+  );
+
+
+document
+  .getElementById("reelCreator")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("reels");
+    }
+  );
+
+
+document
+  .getElementById("callerCreator")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("caller");
+    }
+  );
+
+
+document
+  .getElementById("liveCreator")
+  .addEventListener(
+    "click",
+    function(){
+      showPage("live");
+    }
+  );
+
+
+document
+  .getElementById("pollCreator")
+  .addEventListener(
+    "click",
+    function(){
+      msg("Poll Creator");
+    }
+  );
+
+
+/* =================================================
+   PROFILE FOLLOW
+================================================= */
+
+let followingUser = false;
+
+
+document
+  .getElementById("followBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      followingUser =
+        !followingUser;
+
+
+      const btn =
+        document.getElementById(
+          "followBtn"
+        );
+
+
+      const followers =
+        document.getElementById(
+          "followers"
+        );
+
+
+      if(followingUser){
+
+        btn.innerText =
+          "Following ✓";
+
+        followers.innerText =
+          "12.5K";
+
+      }else{
+
+        btn.innerText =
+          "Follow";
+
+        followers.innerText =
+          "12.4K";
+
+      }
+
+    }
+  );
+
+
+/* =================================================
+   SEARCH
+================================================= */
+
+document
+  .getElementById("searchUserBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      const text =
+        document
+          .getElementById("searchBox")
+          .value
+          .trim();
+
+
+      document
+        .getElementById("result")
+        .innerText =
+          text
+          ? "🔎 Searching: " + text
+          : "Naam likho";
+
+    }
+  );
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+document
+  .getElementById("logoutBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      localStorage.removeItem(
+        "snaptalk_login"
+      );
+
+
+      stopAllVideos();
+
+
+      appPage.classList.add(
+        "hidden"
+      );
+
+      loginPage.classList.remove(
+        "hidden"
+      );
+
+
+      emailInput.value = "";
+
+      passwordInput.value = "";
+
+      showPage("home");
+
+    }
+  );
+
+
+/* =================================================
+   REELS
+================================================= */
+
+const reelsContainer =
+  document.getElementById("reels");
+
+const videos =
+  Array.from(
+    document.querySelectorAll(
+      "#reels video"
+    )
+  );
+
+
+function stopAllVideos(){
+
+  videos.forEach(
+    function(video){
+
+      video.pause();
+
+    }
+  );
+
+}
+
+
+function setupReels(){
+
+  videos.forEach(
+    function(video){
+
+      video.pause();
+
+      video.currentTime = 0;
+
+      video.muted = true;
+
+    }
+  );
+
+}
+
+
+/*
+  Reel automatically play karegi jab
+  user us reel tak scroll karega.
+
+  Lekin browser sound ko automatically
+  allow nahi karta, isliye first tap
+  par sound ON hoga.
+*/
+
+const reelObserver =
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(
+        function(entry){
+
+          const video =
+            entry.target.querySelector(
+              "video"
+            );
+
+
+          if(entry.isIntersecting){
+
+            stopAllVideos();
+
+            video.currentTime = 0;
+
+            video.muted = true;
+
+            video.play().catch(
+              function(){}
+            );
+
+          }else{
+
+            video.pause();
+
+          }
+
+        }
+      );
+
+    },
+    {
+      root:reelsContainer,
+      threshold:0.65
+    }
+  );
+
+
+document
+  .querySelectorAll(".reel")
+  .forEach(
+    function(reel){
+
+      reelObserver.observe(reel);
+
+    }
+  );
+
+
+/* SOUND BUTTON */
+
+document
+  .querySelectorAll(".reel")
+  .forEach(
+    function(reel){
+
+      const video =
+        reel.querySelector("video");
+
+      const sound =
+        reel.querySelector(".sound");
+
+
+      sound.addEventListener(
+        "click",
+        function(e){
+
+          e.stopPropagation();
+
+
+          video.muted =
+            !video.muted;
+
+
+          sound.innerText =
+            video.muted
+            ? "🔇"
+            : "🔊";
+
+
+          if(video.paused){
+
+            video.play().catch(
+              function(){}
+            );
+
+          }
+
+        }
+      );
+
+
+      /*
+        Video par tap:
+        sound ON/OFF
+      */
+
+      video.addEventListener(
+        "click",
+        function(){
+
+          video.muted =
+            !video.muted;
+
+
+          sound.innerText =
+            video.muted
+            ? "🔇"
+            : "🔊";
+
+
+          if(video.paused){
+
+            video.play().catch(
+              function(){}
+            );
+
+          }
+
+        }
+      );
+
+
+      /*
+        Video END hone par:
+        loop nahi hoga.
+        Same video dobara start nahi hoga.
+      */
+
+      video.addEventListener(
+        "ended",
+        function(){
+
+          video.pause();
+
+        }
+      );
+
+    }
+  );
+
+
+/* =================================================
+   CALLER
+================================================= */
+
+document
+  .querySelectorAll(".callAction")
+  .forEach(
+    function(button){
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          startGame(
+            button.dataset.name
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =================================================
+   SNAKE
+================================================= */
+
+const game =
+  document.getElementById("game");
+
+const canvas =
+  document.getElementById("canvas");
+
+const ctx =
+  canvas.getContext("2d");
+
+
+let snake = [];
+
+let food = {
+  x:60,
+  y:60
+};
+
+let direction =
+  "right";
+
+let score =
+  0;
+
+let foodCount =
+  0;
+
+let gameTimer =
+  null;
+
+
+function startGame(name){
+
+  game.classList.remove(
+    "hidden"
+  );
+
+
+  document
+    .getElementById("callName")
+    .innerText =
+      "Demo Call: " + name;
+
+
+  snake = [
+    {x:150,y:150},
+    {x:135,y:150},
+    {x:120,y:150}
+  ];
+
+
+  direction =
+    "right";
+
+
+  score =
+    0;
+
+
+  foodCount =
+    0;
+
+
+  document
+    .getElementById("score")
+    .innerText =
+      "0";
+
+
+  document
+    .getElementById("foodCount")
+    .innerText =
+      "0";
+
+
+  clearInterval(gameTimer);
+
+
+  createFood();
+
+
+  drawSnake();
+
+
+  gameTimer =
+    setInterval(
+      gameLoop,
+      120
+    );
+
+}
+
+
+function gameLoop(){
+
+  const head = {
+    x:snake[0].x,
+    y:snake[0].y
+  };
+
+
+  if(direction === "up")
+    head.y -= 15;
+
+
+  if(direction === "down")
+    head.y += 15;
+
+
+  if(direction === "left")
+    head.x -= 15;
+
+
+  if(direction === "right")
+    head.x += 15;
+
+
+  /* WALL WRAP */
+
+  if(head.x < 0)
+    head.x = 285;
+
+
+  if(head.x >= 300)
+    head.x = 0;
+
+
+  if(head.y < 0)
+    head.y = 285;
+
+
+  if(head.y >= 300)
+    head.y = 0;
+
+
+  /* SELF COLLISION */
+
+  for(let i=0;i<snake.length;i++){
+
+    if(
+      snake[i].x === head.x &&
+      snake[i].y === head.y
+    ){
+
+      clearInterval(
+        gameTimer
+      );
+
+      alert(
+        "Game Over!"
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  snake.unshift(head);
+
+
+  /* FOOD */
+
+  if(
+    head.x === food.x &&
+    head.y === food.y
+  ){
+
+    score += 10;
+
+    foodCount++;
+
+
+    document
+      .getElementById("score")
+      .innerText =
+        score;
+
+
+    document
+      .getElementById("foodCount")
+      .innerText =
+        foodCount;
+
+
+    if(foodCount >= 20){
+
+      clearInterval(
+        gameTimer
+      );
+
+
+      alert(
+        "🏆 20 Food Complete!"
+      );
+
+
+      return;
+
+    }
+
+
+    createFood();
+
+  }else{
+
+    snake.pop();
+
+  }
+
+
+  drawSnake();
+
+}
+
+
+function createFood(){
+
+  let valid =
+    false;
+
+
+  while(!valid){
+
+    food = {
+
+      x:
+        Math.floor(
+          Math.random()*20
+        )*15,
+
+      y:
+        Math.floor(
+          Math.random()*20
+        )*15
+
+    };
+
+
+    valid =
+      !snake.some(
+        function(part){
+
+          return(
+            part.x === food.x &&
+            part.y === food.y
+          );
+
+        }
+      );
+
+  }
+
+}
+
+
+function drawSnake(){
+
+  ctx.clearRect(
+    0,
+    0,
+    300,
+    300
+  );
+
+
+  ctx.fillStyle =
+    "#8b52ff";
+
+
+  snake.forEach(
+    function(part){
+
+      ctx.fillRect(
+        part.x,
+        part.y,
+        13,
+        13
+      );
+
+    }
+  );
+
+
+  ctx.fillStyle =
+    "red";
+
+
+  ctx.fillRect(
+    food.x,
+    food.y,
+    13,
+    13
+  );
+
+}
+
+
+/* =================================================
+   SNAKE DIRECTION
+================================================= */
+
+function changeDirection(event){
+
+  if(!snake.length)
+    return;
+
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  let x;
+  let y;
+
+
+  if(event.touches){
+
+    x =
+      event.touches[0].clientX
+      - rect.left;
+
+    y =
+      event.touches[0].clientY
+      - rect.top;
+
+  }else{
+
+    x =
+      event.clientX
+      - rect.left;
+
+    y =
+      event.clientY
+      - rect.top;
+
+  }
+
+
+  const head =
+    snake[0];
+
+
+  const dx =
+    x - head.x;
+
+  const dy =
+    y - head.y;
+
+
+  let next;
+
+
+  if(
+    Math.abs(dx) >
+    Math.abs(dy)
+  ){
+
+    next =
+      dx > 0
+      ? "right"
+      : "left";
+
+  }else{
+
+    next =
+      dy > 0
+      ? "down"
+      : "up";
+
+  }
+
+
+  if(
+    direction === "left" &&
+    next === "right"
+  ) return;
+
+
+  if(
+    direction === "right" &&
+    next === "left"
+  ) return;
+
+
+  if(
+    direction === "up" &&
+    next === "down"
+  ) return;
+
+
+  if(
+    direction === "down" &&
+    next === "up"
+  ) return;
+
+
+  direction =
+    next;
+
+}
+
+
+canvas.addEventListener(
+  "click",
+  changeDirection
+);
+
+
+canvas.addEventListener(
+  "touchstart",
+  function(e){
+
+    e.preventDefault();
+
+    changeDirection(e);
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/* =================================================
+   END CALL
+================================================= */
+
+document
+  .getElementById("endCallBtn")
+  .addEventListener(
+    "click",
+    closeGame
+  );
+
+
+function closeGame(){
+
+  clearInterval(
+    gameTimer
+  );
+
+  gameTimer =
+    null;
+
+  game.classList.add(
+    "hidden"
+  );
+
+}
+
+
+/* =================================================
+   AUTO LOGIN
+================================================= */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    if(
+      localStorage.getItem(
+        "snaptalk_login"
+      ) === "yes"
+    ){
+
+      openApp();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
