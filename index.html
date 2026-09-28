@@ -1,183 +1,1295 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Snaptalk Pro - Final</title>
+<title>Snaptalk Pro</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial}
-body{background:#09090d;color:#fff}
-.hidden{display:none!important}
-.app{max-width:480px;margin:auto;min-height:100vh;background:#111116;padding-bottom:70px}
-header{height:60px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #29292f;position:sticky;top:0;background:#111116;z-index:10}
-.logo{font-size:24px;font-weight:bold;color:#965cff}
-.page{display:none;padding:15px}.page.active{display:block}
-#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.box{width:100%;max-width:360px;background:#1c1c24;padding:25px;border-radius:20px;text-align:center}
-input{width:100%;padding:13px;margin:7px 0;background:#101015;border:1px solid #333;color:#fff;border-radius:10px;outline:none}
-input:focus{border-color:#8b52ff}
-button{border:0;border-radius:10px;padding:11px;background:#8b52ff;color:#fff;font-weight:bold;cursor:pointer}
-.btn{width:100%;margin-top:8px}
-.post,.card{background:#1b1b22;border:1px solid #29292f;border-radius:14px;margin:12px 0;padding:14px}
-.postimg{height:250px;margin:10px -14px;background:linear-gradient(135deg,#292945,#642d70);display:flex;align-items:center;justify-content:center;font-size:70px}
-.actions{display:flex;gap:22px;font-size:23px}
-.story{display:inline-flex;flex-direction:column;align-items:center;margin-right:14px;font-size:11px}
-.story i{width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,#8b52ff,#ff4f9a);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:20px}
-.storybar{overflow:auto;white-space:nowrap;padding:10px 0}
-.reel{height:500px;border-radius:15px;background:linear-gradient(150deg,#321344,#050505);padding:20px;display:flex;align-items:end}
-.create{display:grid;grid-template-columns:1fr 1fr;gap:10px}.create button{height:70px;background:#22222a}
-.stats{display:flex;justify-content:space-around;text-align:center;margin:20px 0}.stats b{display:block;font-size:20px}
-.avatar{width:85px;height:85px;border-radius:50%;margin:auto;background:linear-gradient(135deg,#8b52ff,#ff4fa3);display:flex;align-items:center;justify-content:center;font-size:35px}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:65px;background:#17171d;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #29292f;z-index:20}
-nav button{background:none;font-size:22px;color:#aaa}.plus{background:#8b52ff!important;color:#fff!important;width:48px;height:48px;border-radius:50%!important}
-#game{position:fixed;inset:0;background:#050507;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center}
-canvas{background:#101827;border:2px solid #8b52ff;border-radius:10px;touch-action:none}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif
+}
+
+body{
+  background:#09090d;
+  color:white
+}
+
+.hidden{
+  display:none!important
+}
+
+/* LOGIN */
+#login{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.box{
+  width:100%;
+  max-width:360px;
+  background:#1c1c24;
+  padding:25px;
+  border-radius:20px;
+  text-align:center
+}
+
+.logo{
+  color:#965cff;
+  font-size:28px;
+  font-weight:bold
+}
+
+input{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  background:#101015;
+  border:1px solid #333;
+  color:white;
+  border-radius:10px;
+  outline:none
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:11px;
+  background:#8b52ff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer
+}
+
+.btn{
+  width:100%;
+  margin-top:8px
+}
+
+/* APP */
+.app{
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  background:#111116;
+  padding-bottom:75px
+}
+
+header{
+  height:60px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #29292f;
+  position:sticky;
+  top:0;
+  background:#111116;
+  z-index:10
+}
+
+.page{
+  display:none;
+  padding:15px
+}
+
+.page.active{
+  display:block
+}
+
+/* POSTS */
+.storybar{
+  overflow:auto;
+  white-space:nowrap;
+  padding:10px 0
+}
+
+.story{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  margin-right:14px;
+  font-size:11px
+}
+
+.story i{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8b52ff,#ff4f9a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-style:normal;
+  font-size:20px
+}
+
+.post,.card{
+  background:#1b1b22;
+  border:1px solid #29292f;
+  border-radius:14px;
+  margin:12px 0;
+  padding:14px
+}
+
+.postimg{
+  height:250px;
+  margin:10px -14px;
+  background:linear-gradient(135deg,#292945,#642d70);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px
+}
+
+.actions{
+  display:flex;
+  gap:25px;
+  font-size:23px
+}
+
+/* REELS */
+.reel{
+  height:500px;
+  border-radius:15px;
+  background:linear-gradient(150deg,#321344,#050505);
+  padding:20px;
+  display:flex;
+  align-items:end
+}
+
+/* CREATE */
+.create{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+.create button{
+  height:70px;
+  background:#22222a
+}
+
+/* PROFILE */
+.stats{
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+  margin:20px 0
+}
+
+.stats b{
+  display:block;
+  font-size:20px
+}
+
+.avatar{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  margin:auto;
+  background:linear-gradient(135deg,#8b52ff,#ff4fa3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(480px,100%);
+  height:65px;
+  background:#17171d;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid #29292f;
+  z-index:20
+}
+
+nav button{
+  background:none;
+  font-size:22px;
+  color:#aaa
+}
+
+.plus{
+  background:#8b52ff!important;
+  color:white!important;
+  width:48px;
+  height:48px;
+  border-radius:50%!important
+}
+
+/* SNAKE */
+#game{
+  position:fixed;
+  inset:0;
+  background:#050507;
+  z-index:99;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center
+}
+
+canvas{
+  background:#101827;
+  border:2px solid #8b52ff;
+  border-radius:10px;
+  touch-action:none
+}
 </style>
 </head>
+
 <body>
 
+<!-- ================= LOGIN ================= -->
+
 <div id="login">
-<div class="box">
-<h1 style="color:#965cff">Snaptalk 🔥</h1>
-<p style="color:#aaa;margin:8px">Strong & Easy Version</p>
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-<button class="btn" onclick="login()">LOGIN</button>
-<button class="btn" style="background:#1877f2" onclick="msg('Facebook Login Demo')">Facebook Login</button>
+
+  <div class="box">
+
+    <div class="logo">Snaptalk 🔥</div>
+
+    <p style="color:#aaa;margin:8px">
+      Strong & Easy Version
+    </p>
+
+    <input
+      id="email"
+      type="email"
+      placeholder="Email"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button
+      class="btn"
+      onclick="handleLogin()"
+    >
+      LOGIN
+    </button>
+
+    <button
+      class="btn"
+      style="background:#1877f2"
+      onclick="msg('Facebook Login Demo')"
+    >
+      Facebook Login
+    </button>
+
+  </div>
+
 </div>
-</div>
+
+
+<!-- ================= APP ================= -->
 
 <div id="app" class="app hidden">
-<header><div class="logo">Snaptalk</div><div onclick="showPage('search')">⌕ Search</div></header>
+
+<header>
+
+  <div class="logo">
+    Snaptalk
+  </div>
+
+  <button
+    onclick="showPage('search')"
+    style="background:none"
+  >
+    🔎
+  </button>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
 
 <section id="home" class="page active">
-<div class="storybar">
-<div class="story"><i>＋</i>Your Story</div><div class="story"><i>A</i>Alex</div><div class="story"><i>R</i>Rahul 1.2K</div><div class="story"><i>P</i>Priya 2.1K</div>
-</div>
-<div class="post"><b>📸 Aryan Official</b><div class="postimg">📸</div><div class="actions"><span onclick="like(this)">♡</span><span onclick="msg('Comments')">💬</span><span onclick="msg('Shared')">↗</span></div><br><b>1240 likes</b><p>Welcome to Snaptalk 🚀</p></div>
-<div class="post"><b>🔥 Rohit</b><div class="postimg">🔥</div><div class="actions"><span onclick="like(this)">♡</span><span>💬</span><span>↗</span></div><br><b>2100 likes 🔴 LIVE</b></div>
+
+  <div class="storybar">
+
+    <div class="story">
+      <i>＋</i>
+      Your Story
+    </div>
+
+    <div class="story">
+      <i>A</i>
+      Alex
+    </div>
+
+    <div class="story">
+      <i>R</i>
+      Rahul
+    </div>
+
+    <div class="story">
+      <i>P</i>
+      Priya
+    </div>
+
+  </div>
+
+
+  <div class="post">
+
+    <b>📸 Aryan Official</b>
+
+    <div class="postimg">
+      📸
+    </div>
+
+    <div class="actions">
+
+      <span onclick="like(this)">
+        ♡
+      </span>
+
+      <span onclick="msg('Comments')">
+        💬
+      </span>
+
+      <span onclick="msg('Shared')">
+        ↗
+      </span>
+
+    </div>
+
+    <br>
+
+    <b>1240 likes</b>
+
+    <p style="margin-top:7px">
+      Welcome to Snaptalk 🚀
+    </p>
+
+  </div>
+
+
+  <div class="post">
+
+    <b>🔥 Rohit</b>
+
+    <div class="postimg">
+      🔥
+    </div>
+
+    <div class="actions">
+
+      <span onclick="like(this)">
+        ♡
+      </span>
+
+      <span>
+        💬
+      </span>
+
+      <span>
+        ↗
+      </span>
+
+    </div>
+
+    <br>
+
+    <b>2100 likes 🔴 LIVE</b>
+
+  </div>
+
 </section>
 
-<section id="reels" class="page"><div class="reel"><div><h2>@snaptalk_creator</h2><p>Reels 🔥 | 1000+ likes = Live</p></div></div></section>
+
+<!-- ================= REELS ================= -->
+
+<section id="reels" class="page">
+
+  <div class="reel">
+
+    <div>
+
+      <h2>
+        @snaptalk_creator
+      </h2>
+
+      <p>
+        Reels 🔥
+      </p>
+
+      <p>
+        1000+ likes = Live
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CREATE ================= -->
 
 <section id="create" class="page">
-<h2>Create</h2><br>
-<div class="create">
-<button onclick="msg('Post Creator')">📷 Post</button>
-<button onclick="msg('Story Creator')">⭕ Story</button>
-<button onclick="showPage('reels')">🎬 Reel</button>
-<button onclick="showPage('caller')">📞 Caller + Snake</button>
-<button onclick="showPage('live')">🔴 Live</button>
-<button onclick="msg('Poll Creator')">📊 Poll</button>
-</div>
+
+  <h2>Create</h2>
+
+  <br>
+
+  <div class="create">
+
+    <button onclick="msg('Post Creator')">
+      📷 Post
+    </button>
+
+    <button onclick="msg('Story Creator')">
+      ⭕ Story
+    </button>
+
+    <button onclick="showPage('reels')">
+      🎬 Reel
+    </button>
+
+    <button onclick="showPage('caller')">
+      📞 Caller + Snake
+    </button>
+
+    <button onclick="showPage('live')">
+      🔴 Live
+    </button>
+
+    <button onclick="msg('Poll Creator')">
+      📊 Poll
+    </button>
+
+  </div>
+
 </section>
+
+
+<!-- ================= CHAT ================= -->
 
 <section id="chat" class="page">
-<h2>Messages</h2>
-<div class="card">👤 Alex — Hey 👋</div>
-<div class="card">💬 Welcome to Snaptalk 🔥</div>
-<h3 style="margin-top:15px">📞 Contacts</h3>
-<div class="card" style="display:flex;justify-content:space-between">Mummy <button onclick="startGame('Mummy')">📞 Call</button></div>
-<div class="card" style="display:flex;justify-content:space-between">Vartika <button onclick="startGame('Vartika')">📞 Call</button></div>
+
+  <h2>Messages</h2>
+
+  <div class="card">
+    👤 Alex — Hey 👋
+  </div>
+
+  <div class="card">
+    💬 Welcome to Snaptalk 🔥
+  </div>
+
+  <h3 style="margin-top:15px">
+    📞 Contacts
+  </h3>
+
+  <div
+    class="card"
+    style="display:flex;justify-content:space-between"
+  >
+
+    Mummy
+
+    <button onclick="startGame('Mummy')">
+      📞 Call
+    </button>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="display:flex;justify-content:space-between"
+  >
+
+    Vartika
+
+    <button onclick="startGame('Vartika')">
+      📞 Call
+    </button>
+
+  </div>
+
 </section>
 
-<section id="live" class="page"><h2>🔴 Live (1000+ Likes)</h2><div class="card">🔴 Aryan Official — 1240 Likes - Live Now</div><div class="card">🔴 Rohit — 2100 Likes - Live Now</div></section>
+
+<!-- ================= LIVE ================= -->
+
+<section id="live" class="page">
+
+  <h2>
+    🔴 Live
+  </h2>
+
+  <div class="card">
+    🔴 Aryan Official — 1240 Likes - Live Now
+  </div>
+
+  <div class="card">
+    🔴 Rohit — 2100 Likes - Live Now
+  </div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
 
 <section id="profile" class="page">
-<div style="text-align:center"><div class="avatar">👤</div><br><h2>@aryan_07</h2><p style="color:#aaa">Creator</p>
-<div class="stats"><div><b>24</b>Posts</div><div><b id="followers">1.2K</b>Followers</div><div><b>320</b>Following</div></div>
-<button onclick="follow()" id="follow">Follow</button><br><br><button onclick="logout()" style="background:#d33">Logout</button></div>
+
+  <div style="text-align:center">
+
+    <div class="avatar">
+      👤
+    </div>
+
+    <br>
+
+    <h2>
+      @aryan_07
+    </h2>
+
+    <p style="color:#aaa">
+      Creator
+    </p>
+
+
+    <div class="stats">
+
+      <div>
+        <b>24</b>
+        Posts
+      </div>
+
+      <div>
+        <b id="followers">
+          1.2K
+        </b>
+        Followers
+      </div>
+
+      <div>
+        <b>320</b>
+        Following
+      </div>
+
+    </div>
+
+
+    <button
+      onclick="follow()"
+      id="follow"
+    >
+      Follow
+    </button>
+
+    <br><br>
+
+    <button
+      onclick="logout()"
+      style="background:#d33"
+    >
+      Logout
+    </button>
+
+  </div>
+
 </section>
 
-<section id="search" class="page"><h2>Search</h2><br><input id="searchBox" placeholder="Search people"><button class="btn" onclick="search()">Search</button><div id="result" class="card">🔎 Search Snaptalk</div></section>
 
-<section id="caller" class="page"><h2>📞 Caller + Snake</h2><p style="color:#aaa;margin:10px 0">Demo call only - 20 food target</p>
-<div class="card" style="display:flex;justify-content:space-between">Mummy <button onclick="startGame('Mummy')">📞 Call</button></div>
-<div class="card" style="display:flex;justify-content:space-between">Vartika <button onclick="startGame('Vartika')">📞 Call</button></div>
+<!-- ================= SEARCH ================= -->
+
+<section id="search" class="page">
+
+  <h2>
+    Search
+  </h2>
+
+  <br>
+
+  <input
+    id="searchBox"
+    placeholder="Search people"
+  >
+
+  <button
+    class="btn"
+    onclick="searchUser()"
+  >
+    Search
+  </button>
+
+  <div
+    id="result"
+    class="card"
+  >
+    🔎 Search Snaptalk
+  </div>
+
 </section>
+
+
+<!-- ================= CALLER ================= -->
+
+<section id="caller" class="page">
+
+  <h2>
+    📞 Caller + Snake
+  </h2>
+
+  <p style="color:#aaa;margin:10px 0">
+    Demo call only
+  </p>
+
+
+  <div
+    class="card"
+    style="display:flex;justify-content:space-between"
+  >
+
+    Mummy
+
+    <button onclick="startGame('Mummy')">
+      📞 Call
+    </button>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="display:flex;justify-content:space-between"
+  >
+
+    Vartika
+
+    <button onclick="startGame('Vartika')">
+      📞 Call
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
-<button onclick="showPage('home')">⌂</button>
-<button onclick="showPage('reels')">▶</button>
-<button class="plus" onclick="showPage('create')">＋</button>
-<button onclick="showPage('chat')">💬</button>
-<button onclick="showPage('profile')">●</button>
+
+  <button onclick="showPage('home')">
+    ⌂
+  </button>
+
+  <button onclick="showPage('reels')">
+    ▶
+  </button>
+
+  <button
+    class="plus"
+    onclick="showPage('create')"
+  >
+    ＋
+  </button>
+
+  <button onclick="showPage('chat')">
+    💬
+  </button>
+
+  <button onclick="showPage('profile')">
+    ●
+  </button>
+
 </nav>
+
 </div>
+
+
+<!-- ================= SNAKE GAME ================= -->
 
 <div id="game" class="hidden">
-<h3 id="callName">Demo Call</h3>
-<p style="margin:10px">Food: <span id="foodCount">0</span>/20 | Score: <span id="score">0</span></p>
-<canvas id="canvas" width="300" height="300"></canvas>
-<p style="font-size:12px;color:#aaa;margin:10px">Jaha click/tap karoge snake wahi jayega</p>
-<button onclick="closeGame()" style="background:#d33;width:180px">Cut Call</button>
+
+  <h3 id="callName">
+    Demo Call
+  </h3>
+
+  <p style="margin:10px">
+    Food:
+    <span id="foodCount">0</span>/20
+    |
+    Score:
+    <span id="score">0</span>
+  </p>
+
+  <canvas
+    id="canvas"
+    width="300"
+    height="300"
+  ></canvas>
+
+  <p
+    style="font-size:12px;color:#aaa;margin:10px"
+  >
+    Tap screen to change direction
+  </p>
+
+  <button
+    onclick="closeGame()"
+    style="background:#d33;width:180px"
+  >
+    Cut Call
+  </button>
+
 </div>
 
-<script>
-function msg(t){alert(t)}
-function login(){
- let e=email.value.trim(), p=password.value.trim();
- if(!e) return msg("Email dalo"); if(!p) return msg("Password dalo");
- localStorage.setItem("login","yes");
- login.classList.add("hidden"); app.classList.remove("hidden");
- showPage("home");
-}
-function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- let pg=document.getElementById(id); if(!pg) id="home";
- document.getElementById(id).classList.add("active");
- window.scrollTo(0,0);
-}
-function like(el){el.innerText=el.innerText==="♡"?"♥":"♡"}
-let isFollow=false;
-function follow(){isFollow=!isFollow; document.getElementById("follow").innerText=isFollow?"Following ✓":"Follow"; document.getElementById("followers").innerText=isFollow?"1.2K+1":"1.2K"}
-function search(){let q=searchBox.value.trim(); result.innerText=q?"🔎 Searching: "+q:"Naam likho"}
-function logout(){localStorage.removeItem("login"); location.reload()}
 
-let snake=[], food={x:60,y:60}, dir="right", score=0, foods=0, timer=null;
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* LOGIN */
+
+function handleLogin(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value.trim();
+
+  if(!email){
+    alert("Email dalo");
+    return;
+  }
+
+  if(!password){
+    alert("Password dalo");
+    return;
+  }
+
+  localStorage.setItem("login","yes");
+
+  document
+    .getElementById("login")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+  showPage("home");
+}
+
+
+/* PAGE CHANGE */
+
+function showPage(id){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+      page.classList.remove("active");
+
+    });
+
+
+  let page =
+    document.getElementById(id);
+
+
+  if(!page){
+
+    page =
+      document.getElementById("home");
+
+  }
+
+
+  page.classList.add("active");
+
+  window.scrollTo(0,0);
+}
+
+
+/* MESSAGE */
+
+function msg(text){
+  alert(text);
+}
+
+
+/* LIKE */
+
+function like(button){
+
+  if(button.innerText === "♡"){
+
+    button.innerText = "♥";
+
+  }else{
+
+    button.innerText = "♡";
+
+  }
+
+}
+
+
+/* FOLLOW */
+
+let following = false;
+
+function follow(){
+
+  following = !following;
+
+
+  document.getElementById("follow").innerText =
+    following
+      ? "Following ✓"
+      : "Follow";
+
+
+  document.getElementById("followers").innerText =
+    following
+      ? "1.2K+1"
+      : "1.2K";
+
+}
+
+
+/* SEARCH */
+
+function searchUser(){
+
+  const text =
+    document
+      .getElementById("searchBox")
+      .value
+      .trim();
+
+
+  document.getElementById("result").innerText =
+    text
+      ? "🔎 Searching: " + text
+      : "Naam likho";
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("login");
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("login")
+    .classList.remove("hidden");
+
+  document.getElementById("email").value = "";
+
+  document.getElementById("password").value = "";
+
+}
+
+
+/* ================= SNAKE ================= */
+
+let snake = [];
+
+let food = {
+  x:60,
+  y:60
+};
+
+let direction = "right";
+
+let score = 0;
+
+let foodCount = 0;
+
+let gameTimer = null;
+
+
 function startGame(name){
- game.classList.remove("hidden"); callName.innerText="Demo Call: "+name;
- snake=[{x:150,y:150},{x:135,y:150},{x:120,y:150}]; dir="right"; score=0; foods=0;
- clearInterval(timer); timer=setInterval(gameLoop,120); newFood(); draw();
+
+  document
+    .getElementById("game")
+    .classList.remove("hidden");
+
+
+  document.getElementById("callName").innerText =
+    "Demo Call: " + name;
+
+
+  snake = [
+    {x:150,y:150},
+    {x:135,y:150},
+    {x:120,y:150}
+  ];
+
+
+  direction = "right";
+
+  score = 0;
+
+  foodCount = 0;
+
+
+  document.getElementById("score").innerText =
+    "0";
+
+  document.getElementById("foodCount").innerText =
+    "0";
+
+
+  clearInterval(gameTimer);
+
+  gameTimer =
+    setInterval(gameLoop,120);
+
+
+  createFood();
+
+  drawSnake();
+
 }
+
+
 function gameLoop(){
- let h={...snake[0]};
- if(dir==="up") h.y-=15; if(dir==="down") h.y+=15; if(dir==="left") h.x-=15; if(dir==="right") h.x+=15;
- if(h.x<0) h.x=285; if(h.x>=300) h.x=0; if(h.y<0) h.y=285; if(h.y>=300) h.y=0;
- // self collision check
- for(let s of snake){ if(s.x===h.x && s.y===h.y){ msg("Game Over!"); closeGame(); return; } }
- snake.unshift(h);
- if(h.x===food.x && h.y===food.y){
-  score+=10; foods++; document.getElementById("score").innerText=score; foodCount.innerText=foods;
-  if(foods>=20){clearInterval(timer); msg("🏆 20 Food Complete! Winner!"); return;}
-  newFood();
- }else snake.pop();
- draw();
+
+  let head = {
+    ...snake[0]
+  };
+
+
+  if(direction === "up")
+    head.y -= 15;
+
+  if(direction === "down")
+    head.y += 15;
+
+  if(direction === "left")
+    head.x -= 15;
+
+  if(direction === "right")
+    head.x += 15;
+
+
+  if(head.x < 0)
+    head.x = 285;
+
+  if(head.x >= 300)
+    head.x = 0;
+
+  if(head.y < 0)
+    head.y = 285;
+
+  if(head.y >= 300)
+    head.y = 0;
+
+
+  snake.unshift(head);
+
+
+  if(
+    head.x === food.x &&
+    head.y === food.y
+  ){
+
+    score += 10;
+
+    foodCount++;
+
+
+    document.getElementById("score").innerText =
+      score;
+
+    document.getElementById("foodCount").innerText =
+      foodCount;
+
+
+    if(foodCount >= 20){
+
+      clearInterval(gameTimer);
+
+      alert("🏆 20 Food Complete!");
+
+      return;
+
+    }
+
+
+    createFood();
+
+  }else{
+
+    snake.pop();
+
+  }
+
+
+  drawSnake();
+
 }
-function newFood(){food={x:Math.floor(Math.random()*20)*15,y:Math.floor(Math.random()*20)*15}}
-function draw(){
- let c=canvas, x=c.getContext("2d");
- x.clearRect(0,0,300,300); x.fillStyle="#8b52ff";
- snake.forEach(s=>x.fillRect(s.x,s.y,13,13)); x.fillStyle="red"; x.fillRect(food.x,food.y,13,13);
+
+
+/* FOOD */
+
+function createFood(){
+
+  food = {
+
+    x:
+      Math.floor(Math.random()*20)*15,
+
+    y:
+      Math.floor(Math.random()*20)*15
+
+  };
+
 }
-function closeGame(){clearInterval(timer); game.classList.add("hidden")}
-function setDir(nx,ny){
- let cx=canvas.getBoundingClientRect(); // handled in click
+
+
+/* DRAW */
+
+function drawSnake(){
+
+  const canvas =
+    document.getElementById("canvas");
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  ctx.clearRect(
+    0,
+    0,
+    300,
+    300
+  );
+
+
+  ctx.fillStyle =
+    "#8b52ff";
+
+
+  snake.forEach(function(part){
+
+    ctx.fillRect(
+      part.x,
+      part.y,
+      13,
+      13
+    );
+
+  });
+
+
+  ctx.fillStyle =
+    "red";
+
+
+  ctx.fillRect(
+    food.x,
+    food.y,
+    13,
+    13
+  );
+
 }
-canvas.addEventListener("click",function(e){
- let r=this.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top, h=snake[0];
- let dx=x-h.x, dy=y-h.y;
- let nd=Math.abs(dx)>Math.abs(dy)?(dx>0?"right":"left"):(dy>0?"down":"up");
- if((dir==="left"&&nd==="right")||(dir==="right"&&nd==="left")||(dir==="up"&&nd==="down")||(dir==="down"&&nd==="up")) return;
- dir=nd;
-});
-canvas.addEventListener("touchstart",function(e){
- e.preventDefault(); let t=e.touches[0], r=this.getBoundingClientRect(), x=t.clientX-r.left, y=t.clientY-r.top, h=snake[0];
- let dx=x-h.x, dy=y-h.y; let nd=Math.abs(dx)>Math.abs(dy)?(dx>0?"right":"left"):(dy>0?"down":"up");
- if((dir==="left"&&nd==="right")||(dir==="right"&&nd==="left")||(dir==="up"&&nd==="down")||(dir==="down"&&nd==="up")) return;
- dir=nd;
-},{passive:false});
-if(localStorage.getItem("login")==="yes"){login.classList.add("hidden");app.classList.remove("hidden");showPage("home")}
+
+
+/* GAME CLOSE */
+
+function closeGame(){
+
+  clearInterval(gameTimer);
+
+  document
+    .getElementById("game")
+    .classList.add("hidden");
+
+}
+
+
+/* SNAKE TOUCH */
+
+document
+  .getElementById("canvas")
+  .addEventListener(
+    "click",
+    changeDirection
+  );
+
+
+document
+  .getElementById("canvas")
+  .addEventListener(
+    "touchstart",
+    function(event){
+
+      event.preventDefault();
+
+      changeDirection(event);
+
+    },
+    {passive:false}
+  );
+
+
+function changeDirection(event){
+
+  const canvas =
+    document.getElementById("canvas");
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  let clientX;
+  let clientY;
+
+
+  if(event.touches){
+
+    clientX =
+      event.touches[0].clientX;
+
+    clientY =
+      event.touches[0].clientY;
+
+  }else{
+
+    clientX =
+      event.clientX;
+
+    clientY =
+      event.clientY;
+
+  }
+
+
+  const x =
+    clientX - rect.left;
+
+  const y =
+    clientY - rect.top;
+
+
+  if(!snake.length)
+    return;
+
+
+  const head =
+    snake[0];
+
+
+  const dx =
+    x - head.x;
+
+  const dy =
+    y - head.y;
+
+
+  let newDirection;
+
+
+  if(Math.abs(dx) > Math.abs(dy)){
+
+    newDirection =
+      dx > 0
+        ? "right"
+        : "left";
+
+  }else{
+
+    newDirection =
+      dy > 0
+        ? "down"
+        : "up";
+
+  }
+
+
+  if(
+    direction === "left" &&
+    newDirection === "right"
+  ) return;
+
+
+  if(
+    direction === "right" &&
+    newDirection === "left"
+  ) return;
+
+
+  if(
+    direction === "up" &&
+    newDirection === "down"
+  ) return;
+
+
+  if(
+    direction === "down" &&
+    newDirection === "up"
+  ) return;
+
+
+  direction =
+    newDirection;
+
+}
+
+
+/* AUTO LOGIN */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    if(
+      localStorage.getItem("login")
+      ===
+      "yes"
+    ){
+
+      document
+        .getElementById("login")
+        .classList.add("hidden");
+
+      document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+      showPage("home");
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
-                                                        </html>
+</html>
